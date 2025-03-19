@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Club; // Import the Club model
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClubController extends Controller
 {
@@ -14,10 +15,10 @@ class ClubController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'logo' => 'nullable|string',
-            'created_by' => 'required|exists:users,id',
             'university_id' => 'required|exists:universities,id',
         ]);
 
+        $request['created_by'] = Auth::id();
         $club = Club::create($request->all());
         return response()->json($club, 201);
     }

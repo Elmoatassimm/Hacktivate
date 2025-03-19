@@ -8,6 +8,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\UniversityController;
+use App\Http\Controllers\AdministrationController;
+use App\Http\Controllers\EventApprovalController;
  
 Route::group([
     'middleware' => 'api',
@@ -28,3 +30,9 @@ Route::apiResource('events', EventController::class);
 
 // University routes
 Route::apiResource('universities', UniversityController::class);
+
+// Administration routes
+Route::apiResource('administrations', AdministrationController::class);
+
+// Event Approval routes
+Route::apiResource('event-approvals', EventApprovalController::class);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EventApproval;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventApprovalController extends Controller
 {
@@ -12,7 +13,7 @@ class EventApprovalController extends Controller
      */
     public function index()
     {
-        //
+        return EventApproval::with(['event', 'approvedBy'])->get();
     }
 
     /**
@@ -20,7 +21,7 @@ class EventApprovalController extends Controller
      */
     public function create()
     {
-        //
+        // Not typically used in API controllers
     }
 
     /**
@@ -28,7 +29,16 @@ class EventApprovalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'event_id' => 'required|exists:events,id',
+            'status' => 'required|in:approved,rejected',
+            'remarks' => 'nullable|string',
+        ]);
+
+        $request['approved_by'] = Auth::id();
+
+        $eventApproval = EventApproval::create($request->all());
+        return response()->json($eventApproval, 201);
     }
 
     /**
@@ -36,7 +46,7 @@ class EventApprovalController extends Controller
      */
     public function show(EventApproval $eventApproval)
     {
-        //
+        return $eventApproval->load(['event', 'approvedBy']);
     }
 
     /**
@@ -44,7 +54,7 @@ class EventApprovalController extends Controller
      */
     public function edit(EventApproval $eventApproval)
     {
-        //
+        // Not typically used in API controllers
     }
 
     /**
@@ -52,7 +62,15 @@ class EventApprovalController extends Controller
      */
     public function update(Request $request, EventApproval $eventApproval)
     {
-        //
+        $request->validate([
+            'event_id' => 'sometimes|required|exists:events,id',
+            'approved_by' => 'sometimes|required|exists:users,id',
+            'status' => 'sometimes|required|in:approved,rejected',
+            'remarks' => 'nullable|string',
+        ]);
+
+        $eventApproval->update($request->all());
+        return response()->json($eventApproval);
     }
 
     /**
@@ -60,6 +78,7 @@ class EventApprovalController extends Controller
      */
     public function destroy(EventApproval $eventApproval)
     {
-        //
+        $eventApproval->delete();
+        return response()->json(null, 204);
     }
 }
