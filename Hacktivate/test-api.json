@@ -89,17 +89,17 @@
 				{
 					"name": "Me",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NDIzNzc5MjEsImV4cCI6MTc0MjM4MTUyMSwibmJmIjoxNzQyMzc3OTIxLCJqdGkiOiJMWG5nYmpOS0thUHl0OGt3Iiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.M-P2yoZVN9R9OQ91zIFdpwo0f7qhOh4I-81w7j9SKUw"
-							}
-						},
 						"method": "POST",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{token}}"
+								"value": "Bearer {{token}}",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
 							}
 						],
 						"url": "{{baseUrl}}auth/me"
@@ -129,12 +129,6 @@
 				{
 					"name": "Create Club",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NDIzNzc5MjEsImV4cCI6MTc0MjM4MTUyMSwibmJmIjoxNzQyMzc3OTIxLCJqdGkiOiJMWG5nYmpOS0thUHl0OGt3Iiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.M-P2yoZVN9R9OQ91zIFdpwo0f7qhOh4I-81w7j9SKUw"
-							}
-						},
 						"method": "POST",
 						"header": [
 							{
@@ -326,7 +320,7 @@
 	"auth": {
 		"type": "bearer",
 		"bearer": {
-			"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NDIzNzc5MjEsImV4cCI6MTc0MjM4MTUyMSwibmJmIjoxNzQyMzc3OTIxLCJqdGkiOiJMWG5nYmpOS0thUHl0OGt3Iiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.M-P2yoZVN9R9OQ91zIFdpwo0f7qhOh4I-81w7j9SKUw"
+			"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NDIzODM0NjMsImV4cCI6MTc0MjM4NzA2MywibmJmIjoxNzQyMzgzNDYzLCJqdGkiOiJjYXNzVDdLRjBTR2ptNnFwIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.1yuMbSvNIIsNP1BMZy1QtPjcEj8U0-AYUx_MhZFTRwY"
 		}
 	},
 	"event": [

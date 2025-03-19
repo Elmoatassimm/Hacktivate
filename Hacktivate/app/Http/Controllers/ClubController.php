@@ -26,7 +26,7 @@ class ClubController extends Controller
     // Method to retrieve all clubs
     public function index()
     {
-        $clubs = Club::all();
+        $clubs = Club::with(['events', 'university'])->get();
         return response()->json($clubs);
     }
 

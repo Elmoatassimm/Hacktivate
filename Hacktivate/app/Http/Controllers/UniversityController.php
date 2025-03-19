@@ -13,7 +13,7 @@ class UniversityController extends Controller
     public function index()
     {
         // Fetch all universities
-        $universities = University::all();
+        $universities = University::with(['clubs', 'administrations'])->get();
         return response()->json($universities);
     }
 

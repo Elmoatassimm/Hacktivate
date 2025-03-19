@@ -13,7 +13,7 @@ class EventApprovalController extends Controller
      */
     public function index()
     {
-        return EventApproval::with(['event', 'approvedBy'])->get();
+        return EventApproval::with(['event', 'user'])->get();
     }
 
     /**

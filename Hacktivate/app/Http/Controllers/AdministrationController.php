@@ -12,7 +12,7 @@ class AdministrationController extends Controller
      */
     public function index()
     {
-        return Administration::all();
+        return Administration::with('university')->get();
     }
 
     /**

@@ -10,6 +10,8 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\AdministrationController;
 use App\Http\Controllers\EventApprovalController;
+
+
  
 Route::group([
     'middleware' => 'api',
@@ -22,17 +24,25 @@ Route::group([
     Route::post('/me', [AuthController::class, 'me'])->middleware('auth:api')->name('me');
 });
 
-// Club routes
-Route::apiResource('clubs', ClubController::class);
 
-// Event routes
-Route::apiResource('events', EventController::class);
 
-// University routes
-Route::apiResource('universities', UniversityController::class);
 
-// Administration routes
-Route::apiResource('administrations', AdministrationController::class);
 
-// Event Approval routes
-Route::apiResource('event-approvals', EventApprovalController::class);
+Route::group([
+    'middleware' => 'auth:api',
+], function ($router) {
+    // Club Routes (Only Admins and Club Managers)
+    Route::apiResource('clubs', ClubController::class)->middleware('club_manager');
+
+    // Event Routes (Only Club Managers)
+    Route::apiResource('events', EventController::class)->middleware('club_manager');
+
+    // University Routes (Admins only)
+    Route::apiResource('universities', UniversityController::class)->middleware('admin');
+
+    // Administration Routes (Admins only)
+    Route::apiResource('administrations', AdministrationController::class)->middleware('admin');
+
+    // Event Approvals (Admins only)
+    Route::apiResource('event-approvals', EventApprovalController::class)->middleware('admin');
+});
